@@ -1,11 +1,15 @@
-
 const express = require("express");
+const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
 
 require("./config/redis");
 require("./config/db");
+
+app.use(cors({
+    origin: process.env.FRONTEND_URL
+}));
 
 app.use(express.json());
 

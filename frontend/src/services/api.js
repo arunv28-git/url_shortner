@@ -1,4 +1,5 @@
 const HISTORY_KEY = 'url_shortner_history';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const shortenUrl = async ({ originalUrl, customalias, expiresIn }) => {
   const payload = { originalUrl };
@@ -12,7 +13,7 @@ export const shortenUrl = async ({ originalUrl, customalias, expiresIn }) => {
     }
   }
 
-  const response = await fetch('/url', {
+  const response = await fetch(`${API_BASE_URL}/url`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

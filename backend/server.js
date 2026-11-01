@@ -1,23 +1,24 @@
-const express = require("express")
-const app = express()
+
+const express = require("express");
 require("dotenv").config();
+
+const app = express();
+
 require("./config/redis");
-require("./config/db")
+require("./config/db");
 
 app.use(express.json());
+
+const urlroutes = require("./routes/urlroutes");
+
+app.get("/", (req, res) => {
+    res.send("WELCOME TO URL SHORTNER BACKEND");
+});
+
+app.use("/url", urlroutes);
+
 const PORT = process.env.PORT || 5000;
 
-const urlroutes = require("./routes/urlroutes")
-app.get("/",(req,res)=>{
-    res.send("WELCOME TO URL SHORTNER BACKEND");
-})
-const redisClient = require("./config/redis");
-
-app.use("/url",urlroutes)
-
-app.listen(PORT,(err)=>{
-    if(err){
-        console.log("COULD NOT CONNECT TO BACKEND");
-    }
-    console.log(`Server Listening On ${PORT}`)
-})
+app.listen(PORT, () => {
+    console.log(`Server Listening On ${PORT}`);
+});

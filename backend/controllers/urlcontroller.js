@@ -37,7 +37,7 @@ const storeurl = (req, res) => {
             }
 
             const shorturl =
-                `http://localhost:5000/url/${shortcode}`;
+    `${process.env.BACKEND_URL}/url/${shortcode}`;
 
             return res.status(201).json({
                 message: "stored successfully",
